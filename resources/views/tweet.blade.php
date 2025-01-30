@@ -1,44 +1,46 @@
-<div class="flex p-4 border-b {{$loop->last ? '' : 'border-b-gray-300'}}">
-    <div class="mr-2 flex-shrink-0">
-        <a href="{{route('users.show', $tweet->user)}}">
+
+<link rel="stylesheet" href="{{ asset('css/tweet.css') }}">
+
+<div class="tweet-item">
+  <div class="avatar-container">
+      <a href="{{ route('users.show', $tweet->user) }}">
           <img 
-          src="{{$tweet->user->avatar}}"
-          class="rounded-full mr-2" 
-          alt="avatar"
-          width="50"
-          height="50"
+              src="{{ $tweet->user->avatar }}" 
+              class="avatar-img" 
+              alt="avatar" 
+              width="50" 
+              height="50"
           >
-        </a>
-    </div>
-    <div>
-        <div class="flex justify-between"  style="width: 600px">
-          <div>
-            <h5 class="font-bold mb-4">
-              <a href="{{route('users.show', $tweet->user)}}">
-                {{ $tweet->user->name }}
-              </a>
-            </h5>
-          </div>
-          <div>
-            @if (auth()->user()->is($tweet->user))
-              <form action="{{route('tweets.destroy', $tweet)}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit">
-                  <i class="fas fa-trash text-red-500"></i>
-                </button>
-              </form>
-            @endif
-          </div>
-        </div>
-        <div class="flex justify-between">
-          <p class="text-sm">
-            {{ $tweet->body }}
-          </p>
-        </div>
-        @if ($tweet->tweetImage != 'http://localhost:8000/')
-          <img src="{{asset($tweet->tweetImage)}}" width="50%" class="mx-auto">
-        @endif
-        
-    </div>
+      </a>
   </div>
+  <div class="tweet-content">
+      <div class="tweet-header">
+          <div class="user-name">
+              <h5>
+                  <a href="{{ route('users.show', $tweet->user) }}">
+                      {{ $tweet->user->name }}
+                  </a>
+              </h5>
+          </div>
+          <div class="tweet-actions">
+              @if (auth()->user()->is($tweet->user))
+                  <form action="{{ route('tweets.destroy', $tweet) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="delete-btn">
+                          <i class="fas fa-trash"></i>
+                      </button>
+                  </form>
+              @endif
+          </div>
+      </div>
+      <div class="tweet-body">
+          <p class="tweet-text">
+              {{ $tweet->body }}
+          </p>
+      </div>
+      @if ($tweet->tweetImage != 'http://localhost:8000/')
+          <img src="{{ asset($tweet->tweetImage) }}" class="tweet-image">
+      @endif
+  </div>
+</div>

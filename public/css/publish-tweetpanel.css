@@ -1,0 +1,78 @@
+/* Estilos para el panel de publicación de tweets */
+.tweet-panel {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.tweet-textarea {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: #f5f5f5;
+    resize: none;
+}
+
+.tweet-textarea:focus {
+    outline: none;
+    background: #fff;
+}
+
+/* Divisor */
+.divider {
+    margin: 15px 0;
+    border: 1px solid #ddd;
+}
+
+/* Pie del panel */
+.tweet-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.avatar-img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.tweet-actions {
+    display: flex;
+    align-items: center;
+}
+
+.tweet-image-label {
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.tweet-image-input {
+    display: none;
+}
+
+.publish-btn {
+    background-color: #1DA1F2;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.publish-btn:hover {
+    background-color: #0a81c5;
+}
+
+/* Mensajes de error */
+.error-message {
+    color: #f44336;
+    font-size: 14px;
+    margin-top: 10px;
+}

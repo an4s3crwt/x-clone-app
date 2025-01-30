@@ -1,17 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-@include('publish-tweet-panel')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+
+    <!-- Incluir el panel de publicación de tweets -->
+    @include('publish-tweet-panel')
+
+    <!-- Mensajes de sesión -->
     @if (session()->has('message'))
-        <div class="border-gray-500 bg-green-400 p-2 w-full mb-2 rounded-lg" onclick="this.style.display='none'">
+        <div class="message-success" onclick="this.style.display='none'">
             {{ session()->get('message') }}
-            <span class="text-sm text-gray-500">(click to dismiss)</span>
+            <span>(click to dismiss)</span>
         </div>
     @elseif(session()->has('error'))
-        <div class="alert alert-danger">
+        <div class="message-error">
             {{ session()->get('error') }}
         </div>
     @endif
+
+    <!-- Incluir el timeline de tweets -->
     @include('timeline', [
         'tweets' => $tweets,
     ])

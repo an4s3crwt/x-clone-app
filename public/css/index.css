@@ -1,0 +1,28 @@
+/* Estilos para los mensajes de éxito y error */
+.message-success {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-success span {
+    font-size: 12px;
+    color: #e0e0e0;
+}
+
+.message-error {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

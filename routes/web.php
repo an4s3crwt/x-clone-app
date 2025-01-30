@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::post('users/{user:username}/follow', [FollowController::class, 'store'])
 ->middleware('auth');
 
-
+  
 });
 
 require __DIR__.'/auth.php';

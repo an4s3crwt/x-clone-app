@@ -1,0 +1,67 @@
+/* Estilos para el tweet */
+.tweet-item {
+    display: flex;
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.avatar-container {
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.avatar-img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.tweet-content {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.tweet-header {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+}
+
+.user-name h5 {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.tweet-actions {
+    display: flex;
+    align-items: center;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #f44336;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.tweet-body {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.tweet-text {
+    font-size: 14px;
+    color: #333;
+}
+
+.tweet-image {
+    width: 50%;
+    margin: 15px auto;
+    display: block;
+}
+
+/* Añadir estilos para cuando no haya borde inferior en el último tweet */
+.tweet-item:last-child {
+    border-bottom: none;
+}
