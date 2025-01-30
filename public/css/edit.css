@@ -1,0 +1,67 @@
+/* Estilos generales del formulario */
+.form-group {
+    margin-bottom: 24px;
+  }
+  
+  .form-label {
+    display: block;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: #4a5568; /* Gray-700 */
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e0; /* Gray-400 */
+  }
+  
+  .file-input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .file-input {
+    margin-right: 12px;
+  }
+  
+  .error-message {
+    color: #e53e3e; /* Red-500 */
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  
+  .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .submit-btn {
+    background-color: #3182ce; /* Blue-500 */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #2b6cb0; /* Blue-600 */
+  }
+  
+  .cancel-btn {
+    background-color: #edf2f7; /* Gray-100 */
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #2d3748; /* Gray-800 */
+  }
+  
+  .cancel-btn:hover {
+    background-color: #e2e8f0; /* Gray-200 */
+  }
+  
