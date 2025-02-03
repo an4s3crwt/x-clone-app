@@ -1,56 +1,88 @@
-/* Estilos para la línea de tiempo */
-.timeline {
-    margin-top: 20px;
+.profile-header {
+    font-family: Arial, sans-serif;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  
+  .banner-container {
+    position: relative;
+  }
+  
+  .banner-image {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .avatar-image {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .header-info {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Estilos para cada tweet */
-.tweet {
-    background: #fff;
-    border: 1px solid #ddd;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  
+  .user-info {
+    max-width: 270px;
+  }
+  
+  .user-name {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .join-info {
+    font-size: 0.875rem;
+  }
+  
+  .header-actions {
+    display: flex;
+  }
+  
+  .edit-profile-button {
+    background-color: #f0f0f0;
     border-radius: 8px;
-    padding: 15px;
-    transition: background 0.3s ease;
-}
-
-.tweet:hover {
-    background: #f9f9f9;
-}
-
-/* Texto del tweet */
-.tweet p {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-/* Fecha del tweet */
-.tweet span {
-    font-size: 12px;
-    color: #888;
-    display: block;
-    margin-top: 5px;
-}
-
-/* Paginación */
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination a {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    margin: 0 5px;
-    border-radius: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    color: black;
+    font-size: 0.75rem;
+    margin-right: 8px;
     text-decoration: none;
-    color: #333;
-    transition: background 0.3s ease;
-}
-
-.pagination a:hover {
-    background: #ddd;
-}
+  }
+  
+  .edit-profile-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .message-alert {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .dismiss-text {
+    font-size: 0.75rem;
+    color: #B0B0B0;
+  }
+  
+  .error-alert {
+    background-color: #e72e21;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .user-description {
+    font-size: 0.875rem;
+  }
+  

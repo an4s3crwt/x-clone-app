@@ -1,58 +1,58 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/show.css') }}">
-
+<head>
+    <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+</head>
 <header class="profile-header">
-    <div class="profile-banner">  
-        <!-- Banner -->
-        <img src="{{ asset('storage/banners/'.$user->banner) }}" alt="banner" class="banner-img"/>
-        <!-- Avatar -->
-        <a href="{{ route('users.edit', $user) }}">
-          <img src="{{ asset('storage/avatars/'.$user->avatar) }}" alt="avatar" class="avatar-img" height="150" width="150" />
-        </a>
-    </div>
+  <div class="banner-container">  
+    <img 
+      src="{{ asset('storage/'.$user->banner) }}" 
+      alt="banner" 
+      class="banner-image"
+    />
+    <img 
+      src="{{asset('storage/'.$user->avatar)}}" 
+      alt=""
+      class="avatar-image"
+      height="150"
+      width="150"
+    />
+  </div>
 
-    <div class="profile-info">
-        <div class="profile-details">
-            <h2>{{ $user->name }}</h2>
-            <p>Joined {{ $user->created_at->diffForHumans() }}</p>
-        </div>
-        <div class="profile-actions">
-            @if (auth()->user()->is($user))
-                <!-- Redirige al formulario de edición de perfil -->
-                <a href="{{ route('users.edit', $user) }}" class="edit-profile-btn">Edit Profile</a>
-            @endif
-        </div>
+  <div class="header-info">
+    <div class="user-info">
+      <h2 class="user-name">{{$user->name}}</h2>
+      <p class="join-info">Joined {{$user->created_at->diffForHumans()}}</p>
     </div>
+    <div class="header-actions">
+      @if (auth()->user()->is($user))
+      <a href="{{route('users.edit', $user)}}" class="edit-profile-button">Edit Profile</a>
+      @endif
+    </div>
+  </div>
 
-    @if(session()->has('message'))
-        <div class="message-success" onclick="this.style.display='none'">
-            {{ session()->get('message') }}
-            <span>(click to dismiss)</span>
-        </div>
-    @elseif(session()->has('error'))
-        <div class="message-error">
-            {{ session()->get('error') }}
-        </div>
+  @if(session()->has('message'))
+    <div class="message-alert" onclick="this.style.display='none'">
+      {{session()->get('message')}}
+      <span class="dismiss-text">(click to dismiss)</span>
+    </div>
+  @elseif(session()->has('error'))
+    <div class="error-alert">
+      {{session()->get('error')}}
+    </div>
+  @endif
+
+  <p class="user-description">
+    @if (auth()->user()->is($user))
+      {{$user->description ? $user->description : 'Add description. Go to edit profile.'}}
     @endif
-
-    <p class="profile-description">
-        @if (auth()->check() && auth()->user()->is($user))
-            {{ $user->description ? $user->description : 'Add description. Go to edit profile.' }}
-        @endif
-        {{ $user->description ? $user->description : null }}
-    </p>
+    {{$user->description ? $user->description : null}}
+  </p>
 </header>
 
-<div class="timeline">
-  @foreach ($tweets as $tweet)
-      <div class="tweet">
-          <p>{{ $tweet->body }}</p>
-          <span class="text-sm text-gray-500">{{ $tweet->created_at->diffForHumans() }}</span>
-      </div>
-  @endforeach
+@include('timeline', [
+  'tweets' => $tweets
+])
 
-  {{ $tweets->links() }}
-</div>
 @endsection

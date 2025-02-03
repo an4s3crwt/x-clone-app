@@ -44,8 +44,9 @@
         <label for="avatar" class="form-label">Avatar</label>
         <div class="file-input-container">
           <input type="file" name="avatar" id="avatar" class="file-input">
-          <img src="{{ $user->avatar }}" alt="Your avatar" width="40">
+          <img src="{{  asset('storage/'.$user->avatar)  }}" alt="Your avatar" width="40">
         </div>
+         
         @error('avatar')
           <p class="error-message">{{ $message }}</p>
         @enderror
@@ -55,7 +56,7 @@
         <label for="banner" class="form-label">Banner</label>
         <div class="file-input-container">
           <input type="file" name="banner" id="banner" class="file-input">
-          <img src="{{ $user->banner }}" alt="Your banner" width="40">
+          <img src="{{  asset('storage/'.$user->banner) }}" alt="Your banner" width="40">
         </div>
         @error('banner')
           <p class="error-message">{{ $message }}</p>

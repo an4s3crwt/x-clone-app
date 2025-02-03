@@ -6,6 +6,9 @@ use App\Http\Controllers\TweetController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\UserController;
 
+
+
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +49,13 @@ Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.ed
 Route::post('users/{user}/update', [UserController::class, 'update'])->name('users.update');
 
   
+});
+
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::delete('/admin/tweet/{id}', [AdminController::class, 'deleteTweet'])->name('admin.deleteTweet');
+    Route::delete('/admin/user/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
 });
 
 require __DIR__.'/auth.php';

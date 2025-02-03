@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 
+
 class UserController extends Controller
 {
     public function show(User $user){
@@ -33,19 +34,25 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,'.$user->id,
             'description' => 'max:255',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'banner' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'avatar' => 'file',
+            'banner' => 'file',
         ]);
 
         if(request('avatar')){
             $validated['avatar'] = request('avatar')->store('avatars');
         }
-
         if(request('banner')){
             $validated['banner'] = request('banner')->store('banners');
         }
+        
+
+
+
+
+
+
 
         $user->update($validated);
-        return redirect()->route('users.show', $user);
+        return redirect()->route('users.show', $user)->with('message', 'Profile updated successfully'); 
     }
 }

@@ -13,13 +13,7 @@
       ></textarea>
       <hr class="divider"/>
       <footer class="tweet-footer">
-          <img 
-              src="{{ auth()->user()->avatar }}" 
-              class="avatar-img" 
-              alt="avatar"
-              width="50"
-              height="50"
-          />
+         <div></div>
           <div class="tweet-actions">
               <label for="tweetImage" class="tweet-image-label" title="Add Image">
                   <input type="file" name="tweetImage" id="tweetImage" class="tweet-image-input" />

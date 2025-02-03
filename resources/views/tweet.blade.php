@@ -1,11 +1,10 @@
-
 <link rel="stylesheet" href="{{ asset('css/tweet.css') }}">
 
 <div class="tweet-item">
   <div class="avatar-container">
       <a href="{{ route('users.show', $tweet->user) }}">
           <img 
-              src="{{ $tweet->user->avatar }}" 
+              src="{{ asset('storage/' . $tweet->user->avatar) }}" 
               class="avatar-img" 
               alt="avatar" 
               width="50" 
@@ -28,8 +27,9 @@
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="delete-btn">
-                          <i class="fas fa-trash"></i>
+                        <i class="fa-solid fa-trash-can"></i>
                       </button>
+                   
                   </form>
               @endif
           </div>
@@ -39,8 +39,12 @@
               {{ $tweet->body }}
           </p>
       </div>
-      @if ($tweet->tweetImage != 'http://localhost:8000/')
-          <img src="{{ asset($tweet->tweetImage) }}" class="tweet-image">
+      
+     @if ($tweet->tweetImage)
+          <img src="{{ asset($tweet->tweetImage) }}" class="tweet-image" >
       @endif
+         
+    
+    
   </div>
 </div>

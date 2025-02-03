@@ -39,7 +39,7 @@
 .delete-btn {
     background: none;
     border: none;
-    color: #f44336;
+    color: #000000;
     cursor: pointer;
     font-size: 16px;
 }
@@ -61,7 +61,8 @@
     display: block;
 }
 
-/* Añadir estilos para cuando no haya borde inferior en el último tweet */
+
 .tweet-item:last-child {
     border-bottom: none;
 }
+
