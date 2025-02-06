@@ -44,12 +44,7 @@ class UserController extends Controller
         if(request('banner')){
             $validated['banner'] = request('banner')->store('banners');
         }
-        
-
-
-
-
-
+   
 
 
         $user->update($validated);

@@ -40,9 +40,13 @@
           </p>
       </div>
       
-     @if ($tweet->tweetImage)
-          <img src="{{ asset($tweet->tweetImage) }}" class="tweet-image" >
+      @if ($tweet->tweetImage && json_decode($tweet->tweetImage))
+      @foreach (json_decode($tweet->tweetImage) as $image)
+          <img src="{{ asset('storage/' . $image) }}" class="tweet-image">
+      @endforeach
       @endif
+  
+  
          
     
     
