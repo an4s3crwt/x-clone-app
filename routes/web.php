@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
 
     // Handle the form submission (POST)
     Route::post('users/{user}/update', [UserController::class, 'update'])->name('users.update');
+    Route::post('users/{user}/update', [UserController::class, 'update'])->name('users.update');
 
     
 
