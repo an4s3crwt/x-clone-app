@@ -16,7 +16,7 @@
          <div></div>
           <div class="tweet-actions">
               <label for="tweetImage" class="tweet-image-label" title="Add Image">
-                  <input type="file" name="tweetImage[]" id="tweetImage" class="tweet-image-input" multiple />
+                  <input type="file" name="tweetImage[]" id="tweetImage" class="tweet-image-input"   multiple accept="image/*" />
                   <span><i class="far fa-image"></i></span>
               </label>
               <button type="submit" class="publish-btn">Publish</button>

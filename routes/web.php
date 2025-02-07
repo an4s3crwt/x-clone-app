@@ -29,6 +29,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -40,22 +41,18 @@ Route::middleware('auth')->group(function () {
     middleware('auth')->name('users.show');
 
     Route::post('users/{user:username}/follow', [FollowController::class, 'store'])
-->middleware('auth');
+    ->middleware('auth');
 
-// Show the edit form (GET)
-Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    // Show the edit form (GET)
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 
-// Handle the form submission (POST)
-Route::post('users/{user}/update', [UserController::class, 'update'])->name('users.update');
+    // Handle the form submission (POST)
+    Route::post('users/{user}/update', [UserController::class, 'update'])->name('users.update');
 
-  
+    
+
 });
 
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::delete('/admin/tweet/{id}', [AdminController::class, 'deleteTweet'])->name('admin.deleteTweet');
-    Route::delete('/admin/user/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
-});
 
 require __DIR__.'/auth.php';

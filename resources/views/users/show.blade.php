@@ -29,6 +29,7 @@
       @if (auth()->user()->is($user))
       <a href="{{route('users.edit', $user)}}" class="edit-profile-button">Edit Profile</a>
       @endif
+      <x-follow-button :user="$user"></x-follow-button> <!--follow button added-->
     </div>
   </div>
 

@@ -18,6 +18,9 @@
         </div>
     @endif
 
+
+
+
     <!-- Incluir el timeline de tweets -->
     @include('timeline', [
         'tweets' => $tweets,

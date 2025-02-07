@@ -33,7 +33,8 @@ class TweetController extends Controller
     public function store(Request $request){
         $validated = $request->validate([
             'body' => 'required|max:255',
-            'tweetImage.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tweetImage' => 'nullable',
+        'tweetImage.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
           
         ]);
 
