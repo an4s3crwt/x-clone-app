@@ -29,7 +29,17 @@
 
         <!-- Page Content -->
         <main>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2">
+                <div class="lg:flex lg:justify-between">
+        
+            <div class="lg:w-32">
+                @include('side-bar-links')
+            </div>
+
             @yield('content') <!-- Aquí se mostrará el contenido de las vistas hijas -->
+        </div>
+    </div>
+    
         </main>
     </div>
 </body>
