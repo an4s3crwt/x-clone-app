@@ -1,0 +1,14 @@
+.sidebar-links {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar-link {
+    font-weight: bold;
+    font-size: 1.125rem; /* 18px */
+    margin-bottom: 1rem; /* 16px */
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    color: inherit;
+}

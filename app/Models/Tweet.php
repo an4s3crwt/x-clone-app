@@ -12,7 +12,8 @@ class Tweet extends Model
         'body',
         'user_id',
         'tweetImage', 
-    ];
+    ]; 
+    
 
      // Define the relationship with the User model
      public function user(){

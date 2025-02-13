@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
 
+
+
 class TweetController extends Controller
 
 {
@@ -15,14 +17,27 @@ class TweetController extends Controller
 
     public function index()
     {
-        $tweets = auth()->user()->tweets;
+        //obtener el id de los usuarios a los que sigue el user registrado, con la funcion follows() del modelo User
+        $followingIds =  auth()->user()->follows()->pluck('id');
+
+        //incluye el propio id del ussuario para que tabién muestre suss tweets,(los del propio usuario)
+        $followingIds->push(auth()->id());
+
+
+
+//esta parte selecciona todos los tweets cuyo user_id esté en l alista de followingIds, es decir, la lista DE 
+//usuarios que sigue el user autentificado.
+        $tweets = Tweet::whereIn('user_id', $followingIds)->paginate(10);
+
+
+        
+        //pasar los tweets a la vista que los muestra 
         return view('tweets.index', [
-            'tweets' => $tweets,
+            'tweets' => $tweets, 
         ]);
     }
 
-    public function destroy(Tweet $tweet)
-    {
+    public function destroy(Tweet $tweet){
         Tweet::where('id', $tweet->id)->delete();
         return back();
     }
@@ -48,8 +63,11 @@ class TweetController extends Controller
             $validated['tweetImage'] = json_encode($imagePaths); // Guardamos como JSON
         }
         
+        
         Tweet::create($validated);
+        
         session()->flash('message', 'Tweet posted successfully');
+        
         return redirect(route('tweets.index'));
 
     }

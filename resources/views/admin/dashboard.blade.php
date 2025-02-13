@@ -18,6 +18,7 @@
             <th class="border p-2">Email</th>
             <th class="border p-2">Acciones</th>
         </tr>
+        
         @foreach($users as $user)
         <tr>
             <td class="border p-2">{{ $user->id }}</td>

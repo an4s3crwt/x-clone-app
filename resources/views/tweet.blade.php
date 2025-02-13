@@ -1,59 +1,51 @@
-<link rel="stylesheet" href="{{ asset('css/tweet.css') }}">
-
-<div class="tweet-item">
-    <div class="avatar-container">
+<div class="border-b border-gray-200 p-4 flex space-x-4">
+    <!-- Avatar -->
+    <div class="flex-shrink-0">
         <a href="{{ route('users.show', $tweet->user) }}">
-            <img src="{{ asset('storage/' . $tweet->user->avatar) }}" class="avatar-img" alt="avatar" width="50"
-                height="50">
+            <img src="{{ asset('storage/' . $tweet->user->avatar) }}" alt="avatar" 
+                class="w-12 h-12 rounded-full object-cover">
         </a>
     </div>
-    <div class="tweet-content">
-        <div class="tweet-header">
-            <div class="user-name">
-                <h5>
-                    <a href="{{ route('users.show', $tweet->user) }}">
-                        {{ $tweet->user->name }}
-                    </a>
-                </h5>
-            </div>
-            <div class="tweet-actions">
-                @if (auth()->user()->is($tweet->user))
-                    <form action="{{ route('tweets.destroy', $tweet) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="delete-btn">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
 
-                    </form>
-                @endif
-            </div>
-        </div>
-        <div class="tweet-body">
-            <p class="tweet-text">
-                {{ $tweet->body }}
-            </p>
-        </div>
-        <div class="tweet-body">
-            @if (!empty($tweet->tweetImage) && is_string($tweet->tweetImage))
-                @php
-                    $images = json_decode($tweet->tweetImage, true);
-                @endphp
+    <!-- Contenido del Tweet -->
+    <div class="flex-1">
+        <!-- Header (Nombre y acciones) -->
+        <div class="flex justify-between items-center">
+            <h5 class="font-semibold text-gray-900">
+                <a href="{{ route('users.show', $tweet->user) }}" class="hover:underline">
+                    {{ $tweet->user->name }}
+                </a>
+            </h5>
 
-                @if (is_array($images))
-                    @foreach ($images as $image)
-                        <img src="{{ asset('storage/' . $image) }}" class="tweet-image">
-                    @endforeach
-                @endif
+            @if (auth()->user()->is($tweet->user))
+                <form action="{{ route('tweets.destroy', $tweet) }}" method="POST" class="ml-4">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-gray-500 hover:text-red-600 transition">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </form>
             @endif
-
         </div>
 
+        <!-- Cuerpo del Tweet -->
+        <p class="text-gray-700 mt-2">
+            {{ $tweet->body }}
+        </p>
 
+        <!-- Imágenes del Tweet -->
+        @if (!empty($tweet->tweetImage) && is_string($tweet->tweetImage))
+            @php
+                $images = json_decode($tweet->tweetImage, true);
+            @endphp
 
-
-
-
-
+            @if (is_array($images))
+                <div class="mt-3 grid grid-cols-2 gap-2">
+                    @foreach ($images as $image)
+                        <img src="{{ asset('storage/' . $image) }}" class="rounded-lg w-full h-40 object-cover">
+                    @endforeach
+                </div>
+            @endif
+        @endif
     </div>
 </div>

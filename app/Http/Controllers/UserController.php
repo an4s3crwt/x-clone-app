@@ -9,6 +9,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    
     public function show(User $user){
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'You must be logged in to view this page.');
@@ -17,8 +18,6 @@ class UserController extends Controller
             'user' => $user,
             'tweets'=> $user->tweets()->paginate(5),
         ]);
-
-
     }
 
     public function edit(User $user){
