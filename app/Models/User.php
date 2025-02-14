@@ -32,7 +32,7 @@ class User extends Authenticatable
             });
         $ids->push($this->id);
 
-        return Tweet::whereIn('user_id', $ids)->withLikes()->latest()->paginate(50);
+        return Tweet::whereIn('user_id', $ids)->withLikes()->latest()->paginate(10);
     }
 
     public function tweets()
@@ -93,6 +93,26 @@ class User extends Authenticatable
 
     public function following(User $user){
         return $this->follows()->where('following_user_id', $user->id)->exists();
+    }
+
+
+    public function followers(){
+        return $this->belongsToMany(
+            User::class, 
+            'follows',
+            'following_user_id',
+            'user_id'
+        );
+    }
+
+
+    //las relacioner para obtener mensajes
+    public function sentMessages(){
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages(){
+        return $this->hasMany(Message::class, 'receiver_id');
     }
 
     

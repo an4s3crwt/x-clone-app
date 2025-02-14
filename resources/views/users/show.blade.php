@@ -45,13 +45,19 @@
 
     <p class="user-description text-gray-700 mt-4">
         @if (auth()->user()->is($user))
-            {{ $user->description ? $user->description : 'Add description. Go to edit profile.' }}
+            {{ $user->description }}
         @else
             {{ $user->description }}
         @endif
     </p>
 </header>
 
+<!-- Incluir los tweets del usuario -->
 @include('timeline', ['tweets' => $tweets])
+
+<!-- Paginación -->
+<div class="pagination-container text-center mt-6">
+    {{ $tweets->links() }}
+</div>
 
 @endsection

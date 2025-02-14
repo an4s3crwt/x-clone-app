@@ -27,7 +27,7 @@ class TweetController extends Controller
 
 //esta parte selecciona todos los tweets cuyo user_id esté en l alista de followingIds, es decir, la lista DE 
 //usuarios que sigue el user autentificado.
-        $tweets = Tweet::whereIn('user_id', $followingIds)->paginate(10);
+        $tweets = Tweet::whereIn('user_id', $followingIds)->paginate(5);
 
 
         

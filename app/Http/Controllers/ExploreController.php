@@ -16,9 +16,10 @@ class ExploreController extends Controller
     }
 
 
+    //para que solo muestren en el explore page
+    //los ids (usuarios) que no sean el user registrado, es decir , auth()->id()
     public function index(){
-        return view('explore.explore-page',[
-            'users' => User::paginate(50),
-        ]);
+        $users = User::where('id', '!=', auth()->id())->paginate(5);
+        return view('explore.explore-page',compact('users'));
     }
 }

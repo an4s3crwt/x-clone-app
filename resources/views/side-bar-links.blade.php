@@ -1,3 +1,4 @@
+
 <head>
     <link rel="stylesheet" href="{{ asset('css/side-bar.css') }}">
 </head>
@@ -16,6 +17,11 @@
     <li>
         <a class="sidebar-link block py-2 px-4 text-gray-900 font-semibold hover:bg-gray-200 rounded transition" href="{{ route('users.show', auth()->user()) }}">
             Profile
+        </a>
+    </li>
+    <li>
+        <a class="sidebar-link block py-2 px-4 text-gray-900 font-semibold hover:bg-gray-200 rounded transition" href="{{ route('messages.index', auth()->user()) }}">
+            Messages
         </a>
     </li>
     <li>

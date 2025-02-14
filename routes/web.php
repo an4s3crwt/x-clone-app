@@ -52,10 +52,18 @@ Route::middleware('auth')->group(function () {
     Route::post('users/{user}/update', [UserController::class, 'update'])->name('users.update');
     Route::post('users/{user}/update', [UserController::class, 'update'])->name('users.update');
 
+
+    Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+    
+    Route::get('/messages', [UserController::class, 'listMessages'])->name('messages.index');
+
+    Route::get('/messages/{user}', [UserController::class, 'showMessages'])->name('messages.show');
+
+    Route::post('/users/{user}/message', [UserController::class, 'sendMessage'])->name('users.message');
     
 
-    Route::get('/explore', [ExploreController::class, 'index']);
     
+   
 });
 
 
