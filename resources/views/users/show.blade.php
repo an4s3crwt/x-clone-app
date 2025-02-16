@@ -23,7 +23,7 @@
         <div class="header-actions flex gap-2">
             @if (auth()->user()->is($user))
                 <a href="{{ route('users.edit', $user) }}"
-                    class="edit-profile-button px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+                    class="px-4 py-2 text-gray-800 border-2 border-gray-200 rounded-full hover:bg-white hover:border-gray-500 hover:text-gray-600 transition duration-200">
                     Edit Profile
                 </a>
             @endif

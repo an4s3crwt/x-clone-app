@@ -9,6 +9,10 @@ use App\Http\Controllers\ExploreController;
 
 use App\Http\Controllers\InsightsController;
 use App\Http\Controllers\AdminController;
+
+
+
+use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +28,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.users');
+    Route::get('/admin/tweets', [AdminController::class, 'showTweets'])->name('admin.tweets');
+ 
 
+
+    Route::delete('/admin/delete-tweet/{id}', [AdminController::class, 'deleteTweet'])->name('admin.deleteTweet');
+   
+    Route::delete('/admin/delete-user/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
+
+});
 
 
 Route::middleware('auth')->group(function () {
@@ -60,6 +75,9 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/insights', [InsightsController::class, 'index'])->name('insights');
     
+
+    Route::get('/tweets/{tweet}/edit', [TweetController::class, 'edit'])->name('tweets.edit');
+Route::put('/tweets/{tweet}', [TweetController::class, 'update'])->name('tweets.update');
    
 });
 

@@ -3,7 +3,7 @@
 <ul class="space-y-4">
   <li>
     @forelse (auth()->user()->follows as $user)
-      <a href="{{ route('users.show', $user) }}" class="block bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-100">
+      <a href="{{ route('users.show', $user) }}" class="block bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out hover:bg-gray-100">
         <div class="flex items-center space-x-4">
           <!-- Avatar -->
           <img 
@@ -15,7 +15,7 @@
           >
           
           <!-- Nombre -->
-          <div class="text-lg font-semibold text-gray-900">
+          <div class="text-lg font-semibold text-gray-900 truncate">
             {{ $user->name }}
           </div>
         </div>

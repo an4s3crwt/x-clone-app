@@ -1,23 +1,19 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth; //importar esto para usar Auth
+use Illuminate\Support\Facades\Auth;
 
 class AdminMiddleware
 {
-   
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-
-        if(Auth::check() && Auth::user()->is_admin){
-            return $next($request);
+        // Si el usuario no es admin, redirige a la página de inicio
+        if (!Auth::check() || !Auth::user()->is_admin) {
+            return redirect()->route('home')->with('error', 'No tienes acceso al panel de administración');
         }
 
-        abort(403, "Access denied");
-       
+        return $next($request);
     }
 }

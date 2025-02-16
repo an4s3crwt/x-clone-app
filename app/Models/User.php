@@ -13,7 +13,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = ['username', 'name', 'email', 'password', 'description', 'avatar', 'banner'];
+    protected $fillable = ['username', 'name', 'email', 'password', 'description', 'avatar', 'banner', 'is_admin'];
 
     protected $hidden = ['password', 'remember_token'];
 
@@ -21,6 +21,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    //para verificatr si el usuario auth()->user() es admin
+    public function isAdmin(){
+        return $this->is_admin;
+    }
+
+
 
     public function timeline()
     {

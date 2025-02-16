@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!-- Incluir el panel de publicación de tweets -->
+
 @include('publish-tweet-panel')
 
 <!-- Mensajes de sesión -->
