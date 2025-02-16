@@ -16,19 +16,20 @@
 
 <body class="font-sans antialiased bg-white text-black">
     <div class="min-h-screen flex flex-col">
-        
+
         <!-- Navbar superior -->
         @include('layouts.navigation')
 
         <div class="flex justify-center flex-grow">
 
             <!-- Sidebar izquierdo -->
-            <aside class="hidden sm:flex flex-col w-64 px-6 py-8 border-r border-gray-200">
+            <aside class="hidden sm:flex flex-col w-64 sm:w-72 lg:w-80 px-6 py-8 border-r border-gray-200">
                 @include('side-bar-links')
             </aside>
 
-            <div class="w-full sm:w-[600px] min-h-screen border-x border-gray-200 flex flex-col">
-                
+            <!-- Contenedor central con ancho más ajustado -->
+            <div class="w-full max-w-4xl px-4 mx-auto flex flex-col">
+
                 <!-- Page Heading -->
                 @if (isset($header))
                     <header class="bg-white shadow border-b border-gray-200">
@@ -45,9 +46,8 @@
             </div>
 
             <!-- Sidebar derecho (Opcional, para tendencias u otros datos) -->
-            <aside class="hidden lg:flex flex-col w-64 px-6 py-8 border-l border-gray-200">
+            <aside class="hidden lg:flex flex-col w-64 sm:w-72 lg:w-80 px-6 py-8 border-l border-gray-200">
                 <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                
                     @include('friend-list')
                 </div>
             </aside>

@@ -103,5 +103,16 @@ class UserController extends Controller
         $users = User::where('id', '!=', auth()->id())->paginate(10); // Excluir usuario autenticado
         return view('messages.index', compact('users'));
     }
+    public function insights()
+{
+    $user = auth()->user();
+
+    return view('insights', [
+        'tweetsCount' => $user->tweets()->count(),
+        'followersCount' => $user->followers()->count(), // Ahora funcionará
+        'followingCount' => $user->follows()->count(), // Ya lo tienes
+    ]);
+}
+
 
 }

@@ -7,7 +7,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExploreController;
 
-
+use App\Http\Controllers\InsightsController;
 use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +24,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
@@ -61,7 +58,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/users/{user}/message', [UserController::class, 'sendMessage'])->name('users.message');
     
-
+    Route::get('/insights', [InsightsController::class, 'index'])->name('insights');
     
    
 });

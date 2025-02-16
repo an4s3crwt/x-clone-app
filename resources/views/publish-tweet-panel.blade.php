@@ -1,24 +1,24 @@
-<div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+<div class="bg-white bg-opacity-70 backdrop-blur-md rounded-lg p-6 shadow-xl mt-6"> <!-- Borde eliminado -->
     <form action="/tweets" method="POST" enctype="multipart/form-data">
         @csrf
         <textarea 
             name="body" 
-            class="w-full h-24 resize-none border-none focus:ring-0 text-lg placeholder-gray-400"
+            class="w-full h-24 resize-none border-none focus:ring-0 text-lg placeholder-gray-400 bg-transparent text-gray-800"
             placeholder="What's on your mind?"
             required
             autofocus
         ></textarea>
         
-        <hr class="border-gray-200 my-3"/>
+        <hr class="border-gray-600 my-5"/>
 
         <div id="image-preview" class="flex flex-wrap gap-2"></div>
 
         <footer class="flex justify-between items-center mt-2">
-            <label for="tweetImage" class="cursor-pointer text-gray-500 hover:text-gray-700 transition">
+            <label for="tweetImage" class="cursor-pointer text-gray-600 hover:text-black transition">
                 <input type="file" name="tweetImage[]" id="tweetImage" class="hidden" multiple accept="image/*" />
-                <i class="far fa-image text-xl"></i>
+                <i class="fa-sharp fa-regular fa-image"></i>
             </label>
-            <button type="submit" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">
+            <button type="submit" class="px-6 py-3 bg-transparent border-2 border-black text-black font-semibold rounded-full hover:bg-black hover:text-white transition duration-300 ease-in-out transform hover:scale-105">
                 Publish
             </button>
         </footer>
@@ -28,9 +28,6 @@
         <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
     @enderror
 </div>
-
-
-
 
 <script>
 document.getElementById('tweetImage').addEventListener('change', function(event) {
