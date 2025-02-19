@@ -25,7 +25,7 @@ class AdminController extends Controller
             // Si es admin, obtiene todos los usuarios y tweets
             $users = User::all();
             $tweets = Tweet::all();
-            
+
             // Retorna la vista del dashboard pasándole los datos de usuarios y tweets
             return view('admin.dashboard', compact('users', 'tweets'));
         }
@@ -39,12 +39,12 @@ class AdminController extends Controller
     {
         // Busca el tweet por su ID o lanza un error 404 si no lo encuentra
         $tweet = Tweet::findOrFail($id);
-        
+
         // Elimina el tweet de la base de datos
         $tweet->delete();
 
         // Redirige al dashboard de admin con un mensaje de éxito
-        return redirect()->route('admin.dashboard')->with('message', 'Tweet eliminado');
+        return redirect()->route('admin.tweets')->with('message', 'Tweet eliminado');
     }
 
     // Función para eliminar un usuario por su ID
@@ -52,12 +52,12 @@ class AdminController extends Controller
     {
         // Busca el usuario por su ID o lanza un error 404 si no lo encuentra
         $user = User::findOrFail($id);
-        
+
         // Elimina el usuario de la base de datos
         $user->delete();
 
         // Redirige al dashboard de admin con un mensaje de éxito
-        return redirect()->route('admin.dashboard')->with('message', 'Usuario eliminado');
+        return redirect()->route('admin.tweets')->with('message', 'Usuario eliminado');
     }
 
     // Función para mostrar todos los usuarios
@@ -65,7 +65,7 @@ class AdminController extends Controller
     {
         // Obtiene todos los usuarios o aplica cualquier filtro que desees
         $users = User::all();  // O puedes aplicar filtros como `User::where('status', 'active')->get()`
-        
+
         // Retorna la vista 'admin.users' y le pasa la lista de usuarios
         return view('admin.users', compact('users'));
     }
@@ -75,10 +75,24 @@ class AdminController extends Controller
     {
         // Obtiene el parámetro 'sortTweets' de la solicitud, por defecto es 'desc'
         $order = $request->get('sortTweets', 'desc');
-        
+
+        $filter = $request->get('filter');
+
+        $bannedWords = ['cat', 'dog'];
+
         // Obtiene los tweets ordenados por fecha de creación, según el valor de 'sortTweets'
-        $tweets = Tweet::orderBy('created_at', $order)->get();
-        
+        $query = Tweet::orderBy('created_at', $order);
+
+        // Si el filtro de palabras prohibidas está activado
+        if ($filter === 'banned') {
+            $query->where(function ($q) use ($bannedWords) {
+                foreach ($bannedWords as $word) {
+                    $q->orWhere('body', 'LIKE', "%{$word}%");
+                }
+            });
+        }
+
+        $tweets = $query->get();
         // Retorna la vista 'admin.tweets' con los tweets obtenidos
         return view('admin.tweets', compact('tweets'));
     }

@@ -57,10 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::post('users/{user:username}/follow', [FollowController::class, 'store'])
     ->middleware('auth');
 
-    // Show the edit form (GET)
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 
-    // Handle the form submission (POST)
+    
     Route::post('users/{user}/update', [UserController::class, 'update'])->name('users.update');
     Route::post('users/{user}/update', [UserController::class, 'update'])->name('users.update');
 

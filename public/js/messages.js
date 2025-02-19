@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Crear el nuevo mensaje en el DOM sin recargar la página
+                
                 const messageElement = document.createElement("div");
                 messageElement.classList.add("p-3", "rounded-lg");
                 messageElement.classList.add("bg-gray-300", "text-gray-900", "self-end"); // Mensaje del usuario

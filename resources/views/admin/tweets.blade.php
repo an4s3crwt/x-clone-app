@@ -10,17 +10,26 @@
             </div>
         @endif
 
-        <!-- Selector de orden -->
+        <!-- Selector de orden y filtro -->
         <div class="mb-6 flex justify-between items-center">
-            <div>
-                <label for="sortTweets" class="text-lg text-gray-700">Ordenar por:</label>
-            </div>
             <form method="GET" action="{{ route('admin.tweets') }}" class="flex items-center">
+                <!-- Ordenar por más recientes o más antiguos -->
+                <label for="sortTweets" class="text-lg text-gray-700 mr-2">Ordenar por:</label>
                 <select id="sortTweets" name="sortTweets" class="bg-gray-100 border border-gray-300 text-gray-800 py-2 px-4 rounded mr-4">
                     <option value="desc" {{ request('sortTweets') == 'desc' ? 'selected' : '' }}>Más recientes</option>
                     <option value="asc" {{ request('sortTweets') == 'asc' ? 'selected' : '' }}>Más antiguos</option>
                 </select>
-                <button type="submit" class="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition-all duration-200">Aplicar</button>
+
+                <!-- Filtro de palabras prohibidas -->
+                <label for="filterTweets" class="text-lg text-gray-700 mr-2">Filtrar:</label>
+                <select id="filterTweets" name="filter" class="bg-gray-100 border border-gray-300 text-gray-800 py-2 px-4 rounded mr-4">
+                    <option value="">Todos</option>
+                    <option value="banned" {{ request('filter') == 'banned' ? 'selected' : '' }}>Con palabras prohibidas</option>
+                </select>
+
+                <button type="submit" class="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition-all duration-200">
+                    Aplicar
+                </button>
             </form>
         </div>
 
